@@ -19,7 +19,7 @@ export class UsersService {
         },
     ];
     getUsers(){
-        return this.users.map((users)=> plainToClass(serializedUser,users));
+        return this.users.map((users)=> new serializedUser(users));
     };
     getUserByuserName(username:string){
         return this.users.find((users)=>users.username === username);
