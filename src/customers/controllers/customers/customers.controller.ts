@@ -7,7 +7,9 @@ import { Controller,
         Res, 
         Body, 
         UsePipes, 
-        ValidationPipe } from '@nestjs/common';
+        ValidationPipe, 
+        HttpException,
+        HttpStatus} from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CreateCustomerDto } from 'src/customers/dtos/Customers.dtos';
 import { CustomersService } from 'src/customers/service/customers/customers.service';
@@ -29,6 +31,15 @@ export class CustomersController {
        }
         
     }
+
+    @Get('/search/:id')
+    searchcustomerById(@Param('id',ParseIntPipe)id:number){
+        const customer=this.customerService.findCustomerById
+        (id);
+        if(customer) return customer
+        else throw new HttpException('customer not find',HttpStatus.BAD_REQUEST);
+    }
+    
     @Get('')
     getAllcustomers(){
         return this.customerService.getCustomers();

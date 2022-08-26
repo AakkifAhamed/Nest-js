@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsNotEmptyObject, IsNumber, IsNumberString, Valida
 import {CreateAddressDto}from "./Address.dtos";
 
 export class CreateCustomerDto{
-    @IsNumberString()
+    @IsNumber()
     @IsNotEmpty()
     id:number;
 
